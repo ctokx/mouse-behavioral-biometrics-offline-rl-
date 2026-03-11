@@ -1,10 +1,10 @@
-![BMDS Demo](output/visualizations/postprocessed_demo.gif)
+![reinforce-cursor demo](output/visualizations/postprocessed_demo.gif)
 
-# BMDS (Biomechanical Mouse Dynamics Synthesizer)
+# reinforce-cursor
 
-BMDS generates synthetic mouse trajectories that pass bot detection.
+Reinforcement learning agent that generates human-like mouse trajectories capable of evading bot detection.
 
-It covers Balabit telemetry ingestion, trajectory segmentation, kinematic feature extraction, MuJoCo physics simulation, offline RL policy training (IQL/CQL/BC), postprocessing, and quantitative evaluation against three independent bot detectors.
+Trained on real user telemetry (Balabit Mouse Dynamics Challenge) via offline RL inside a MuJoCo physics simulation. Output trajectories pass DELBOT RNN, GradientBoosting, and One-Class SVM detectors.
 
 ## Repository Layout
 
@@ -21,7 +21,7 @@ It covers Balabit telemetry ingestion, trajectory segmentation, kinematic featur
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
-npm install  # for DELBOT bot detector
+npm install
 ```
 
 ## Quick Start
@@ -69,4 +69,4 @@ python scripts/12_visualize_postprocessed.py --n 5
 
 - Primary algorithm: IQL (reaches 8/8 targets in ~2 min on RTX 4060)
 - Postprocessing: oscillation truncation → Gaussian smoothing (σ=2.5, 3-frame boundary pin) → lateral arch → endpoint pauses with 0.28px tremor
-- Main dependencies: MuJoCo 3.x, d3rlpy 1.1.x, PyTorch, Gymnasium, scikit-learn, Node.js (DELBOT)
+- Dependencies: MuJoCo 3.x, d3rlpy 1.1.x, PyTorch, Gymnasium, scikit-learn, Node.js (DELBOT)
